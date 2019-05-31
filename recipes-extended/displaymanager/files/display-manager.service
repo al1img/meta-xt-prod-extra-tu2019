@@ -1,0 +1,14 @@
+[Unit]
+Description=EPAM Display Manager
+Requires=dbus.service weston-ready.service
+After=weston-ready.service
+
+[Service]
+Type=simple
+Environment="XDG_RUNTIME_DIR=/run/user/0"
+ExecStart=/usr/bin/display_manager -c /xt/cfg/dm.cfg -v *:Debug
+Restart=on-failure
+RestartSec=4
+
+[Install]
+WantedBy=default.target
